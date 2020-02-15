@@ -21,7 +21,10 @@ abstract class NoteDatabase : RoomDatabase() {
                 Room.databaseBuilder(
                     context.applicationContext,
                     NoteDatabase::class.java, "note_database"
-                ).fallbackToDestructiveMigration().addCallback(roomCallback).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .addCallback(roomCallback)
+                    .build()
             }
             return instance
         }
