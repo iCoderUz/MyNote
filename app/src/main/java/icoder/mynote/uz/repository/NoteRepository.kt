@@ -7,11 +7,11 @@ import icoder.mynote.uz.model.Note
 import icoder.mynote.uz.room.NoteDao
 import icoder.mynote.uz.room.NoteDatabase
 
-class NoteRepository {
-    private lateinit var noteDao: NoteDao
-    private lateinit var allNotes: LiveData<List<Note>>
+class NoteRepository(private val application: Application) {
+    private var noteDao: NoteDao
+    private var allNotes: LiveData<List<Note>>
 
-    fun NoteRepository(application: Application) {
+    init {
         val database: NoteDatabase = NoteDatabase.getInstance(application)!!
         noteDao = database.noteDao()!!
         allNotes = noteDao.getAllNotes()
