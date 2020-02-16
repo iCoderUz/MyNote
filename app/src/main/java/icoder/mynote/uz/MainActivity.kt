@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import icoder.mynote.uz.adapter.AdapterNote
 import icoder.mynote.uz.model.Note
 import icoder.mynote.uz.viewmodel.NoteViewModel
+import icoder.mynote.uz.viewmodel.NoteViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
 
+        noteViewModel = ViewModelProviders.of(this, NoteViewModelFactory(this.application)).get(NoteViewModel::class.java)
 
-        noteViewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
         noteViewModel.getAllNotes().observe(this, Observer<List<Note>> { notes ->
             adapter.setNotes(notes)
         })

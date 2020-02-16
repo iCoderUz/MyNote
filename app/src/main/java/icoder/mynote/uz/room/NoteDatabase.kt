@@ -14,7 +14,7 @@ abstract class NoteDatabase : RoomDatabase() {
     abstract fun noteDao(): NoteDao?
 
     companion object {
-        private val instance: NoteDatabase? = null
+        private lateinit var instance: NoteDatabase
         @Synchronized
         fun getInstance(context: Context): NoteDatabase? {
             if (instance == null) {
